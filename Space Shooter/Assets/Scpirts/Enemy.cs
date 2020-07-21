@@ -41,6 +41,13 @@ public class Enemy : MonoBehaviour
         }
         else if (other.tag == "Player")
         {
+            var player = other.gameObject.GetComponent<Player>();
+
+            if (player != null)
+            {
+                player.Damage();
+            }
+            
             Destroy(gameObject);
         }
     }
