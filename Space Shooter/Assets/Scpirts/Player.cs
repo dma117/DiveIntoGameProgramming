@@ -7,8 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.5f;
-    private float _screenWidth = 5;
-    private float _screenHeight = 3;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +18,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
+    }
+
+    void Move()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-
+        
         transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime * _speed);
+        
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4, 0), 0);
 
-        if (Math.Abs(transform.position.y) >= _screenHeight)
+        if (transform.position.x > 11)
         {
-            transform.position = new Vector3(transform.position.x, _screenHeight * Mathf.Sign(transform.position.y), transform.position.z);
+            transform.position = new Vector3(-11.3f, transform.position.y, 0);
         }
-        if (Math.Abs(transform.position.x) >= _screenWidth)
+        else if (transform.position.x < -11.3f)
         {
-            transform.position = new Vector3(_screenWidth * Mathf.Sign(transform.position.x), transform.position.y, transform.position.z);
-        }
+            transform.position = new Vector3(11, transform.position.y, 0);
+        } 
     }
 }
