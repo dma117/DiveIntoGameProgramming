@@ -5,7 +5,7 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 8;
+    private float _speed = 8.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +16,10 @@ public class Laser : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.up * Time.deltaTime * _speed);
+
+        if (transform.position.y > 7.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
