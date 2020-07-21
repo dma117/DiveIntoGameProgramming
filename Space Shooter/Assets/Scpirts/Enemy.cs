@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -27,6 +29,19 @@ public class Enemy : MonoBehaviour
         else
         {
             transform.position = new Vector3(Random.Range(-8.0f, 8.0f), 7, 0);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Laser")
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
+        else if (other.tag == "Player")
+        {
+            Destroy(gameObject);
         }
     }
 }
