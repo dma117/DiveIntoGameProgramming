@@ -37,13 +37,17 @@ public class PowerUp : MonoBehaviour
             
             if (player != null)
             {
-                if (_id == 0)
+                switch (_id)
                 {
-                    player.TripleShotActive();
-                }
-                else if (_id == 1)
-                {
-                    Debug.Log("SpeedPowerUp");
+                    case 0:
+                        player.TripleShotActive();
+                        break;
+                    case 1:
+                        Debug.Log("SpeedUp");
+                        break;
+                    case 2: 
+                        Debug.Log("Smth");
+                        break;
                 }
             }
             
