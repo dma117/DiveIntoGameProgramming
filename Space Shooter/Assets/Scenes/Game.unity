@@ -584,4 +584,4 @@ MonoBehaviour:
   _powerups:
   - {fileID: 7157736385593616574, guid: 3a8f0fcb3bc99694fab901a5689842b4, type: 3}
   - {fileID: 7331768246482317797, guid: 7618549376714fa4a87502630c8e80eb, type: 3}
-  - {fileID: 0}
+  - {fileID: 2101457343890680251, guid: b4ba689e5b713b84bbe72e8ee1612472, type: 3}

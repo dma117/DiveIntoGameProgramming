@@ -46,7 +46,7 @@ public class PowerUp : MonoBehaviour
                         player.SpeedShotActive();
                         break;
                     case 2: 
-                        Debug.Log("Smth");
+                        player.ShieldPowerActive();
                         break;
                 }
             }
