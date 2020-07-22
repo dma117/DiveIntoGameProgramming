@@ -43,7 +43,7 @@ public class PowerUp : MonoBehaviour
                         player.TripleShotActive();
                         break;
                     case 1:
-                        Debug.Log("SpeedUp");
+                        player.SpeedShotActive();
                         break;
                     case 2: 
                         Debug.Log("Smth");

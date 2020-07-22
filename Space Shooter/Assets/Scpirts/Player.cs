@@ -103,4 +103,16 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _tripleShot = false;
     }
+
+    public void SpeedShotActive()
+    {
+        _speed = 8.5f;
+        StartCoroutine(SpeedPowerUpRoutine());
+    }
+
+    IEnumerator SpeedPowerUpRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _speed = 3.5f;
+    }
 }
