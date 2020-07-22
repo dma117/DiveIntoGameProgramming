@@ -106,13 +106,13 @@ public class Player : MonoBehaviour
 
     public void SpeedShotActive()
     {
-        _speed = 8.5f;
+        _speed *= 1.5f;
         StartCoroutine(SpeedPowerUpRoutine());
     }
 
     IEnumerator SpeedPowerUpRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _speed = 3.5f;
+        _speed /= 1.5f;
     }
 }
