@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private GameObject _shieldVisualizer;
     [SerializeField]
     private int _lifes = 3;
+    [SerializeField] 
+    private int _score;
     
     private SpawnManager _spawnManager;
     private float _delay = 0.12f;
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour
 
     private bool _tripleShot;
     private bool _shieldPower;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +100,12 @@ public class Player : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void IncreaseScore(int score)
+    {
+        _score += score;
+        GameObject.Find("Canvas").GetComponent<UIManager>().SetScore(_score);
     }
 
     public void TripleShotActive()
