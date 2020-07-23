@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private int _score;
     
     private SpawnManager _spawnManager;
+    private UIManager _ui;
     private float _delay = 0.12f;
 
     private float _fireTime = 0.5f;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     {
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _ui = GameObject.Find("Canvas").GetComponent<UIManager>();
 
         if (_spawnManager == null)
         {
@@ -93,6 +95,7 @@ public class Player : MonoBehaviour
         else
         {
             _lifes -= 1;
+            _ui.UpdateLives(_lifes);
 
             if (_lifes < 1)
             {
@@ -105,7 +108,7 @@ public class Player : MonoBehaviour
     public void IncreaseScore(int score)
     {
         _score += score;
-        GameObject.Find("Canvas").GetComponent<UIManager>().SetScore(_score);
+        _ui.SetScore(_score);
     }
 
     public void TripleShotActive()
