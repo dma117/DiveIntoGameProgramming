@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
             {
                 _spawnManager.OnPlayerDeath();
                 Destroy(gameObject);
+                _ui.GameOver();
             }
         }
     }
