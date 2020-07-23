@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityManager = UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour
+public class SceneController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,6 @@ public class SceneManager : MonoBehaviour
 
     public void UpdateScene()
     {
-       UnityManager.SceneManager.LoadScene(0);
+       SceneManager.LoadScene(1); //current scene
     }
 }

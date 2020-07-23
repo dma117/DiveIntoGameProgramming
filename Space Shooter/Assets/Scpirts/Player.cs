@@ -20,9 +20,10 @@ public class Player : MonoBehaviour
     
     private SpawnManager _spawnManager;
     private UIManager _ui;
+    
     private float _delay = 0.12f;
-
     private float _fireTime = 0.5f;
+    private float _powerupTime = 5.0f;
 
     private bool _tripleShot;
     private bool _shieldPower;
@@ -119,7 +120,7 @@ public class Player : MonoBehaviour
 
     IEnumerator TripleShotPowerDownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(_powerupTime);
         _tripleShot = false;
     }
 
@@ -131,7 +132,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SpeedPowerUpRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(_powerupTime);
         _speed /= 1.5f;
     }
 
@@ -139,5 +140,13 @@ public class Player : MonoBehaviour
     {
         _shieldPower = true;
         _shieldVisualizer.SetActive(true);
+        StartCoroutine(ShieldPowerRoutine());
+    }
+
+    IEnumerator ShieldPowerRoutine()
+    {
+        yield return new WaitForSeconds(_powerupTime);
+        _shieldPower = false;
+        _shieldVisualizer.SetActive(false);
     }
 }

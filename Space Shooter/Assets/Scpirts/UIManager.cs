@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && _restartText.gameObject.activeSelf)
         {
-            _sceneManager.GetComponent<SceneManager>().UpdateScene();
+            _sceneManager.GetComponent<SceneController>().UpdateScene();
         }
     }
 
