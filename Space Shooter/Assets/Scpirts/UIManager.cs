@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,13 +14,25 @@ public class UIManager : MonoBehaviour
     private Image _livesImg;
     [SerializeField]
     private GameObject _gameOverText;
-
-    // Start is called before the first frame update
+    [SerializeField]
+    private Text _restartText;
+    [SerializeField]
+    private GameObject _sceneManager;
+    
     void Start()
     {
         _gameOverText.SetActive(false);
+        _restartText.gameObject.SetActive(false);
         SetScore(0);
         UpdateLives(3); 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && _restartText.gameObject.activeSelf)
+        {
+            _sceneManager.GetComponent<SceneManager>().UpdateScene();
+        }
     }
 
     public void SetScore(int score)
@@ -34,6 +47,7 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
+        _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
     }
 
