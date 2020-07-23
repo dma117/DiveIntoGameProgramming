@@ -34,6 +34,17 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        _gameOverText.SetActive(true);
+        StartCoroutine(GameOverFlickerRoutine());
+    }
+
+    IEnumerator GameOverFlickerRoutine()
+    {
+        while (true)
+        {
+            _gameOverText.SetActive(true);
+            yield return new WaitForSeconds(0.15f);
+            _gameOverText.SetActive(false);
+            yield return new WaitForSeconds(0.15f);
+        }
     }
 }
