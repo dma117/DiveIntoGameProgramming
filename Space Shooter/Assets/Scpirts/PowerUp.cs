@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
@@ -10,10 +6,16 @@ public class PowerUp : MonoBehaviour
     private float _speed = 3;
     [SerializeField]
     private int _id;
+    [SerializeField]
+    private AudioClip _powerupSound;
+
+    private AudioSource _audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = _powerupSound;
     }
 
     // Update is called once per frame
@@ -33,6 +35,8 @@ public class PowerUp : MonoBehaviour
     {
         if (other.name == "Player")
         {
+            _audioSource.Play();
+            
             var player = other.gameObject.GetComponent<Player>();
             
             if (player != null)
@@ -51,7 +55,7 @@ public class PowerUp : MonoBehaviour
                 }
             }
             
-            Destroy(gameObject);
+            Destroy(gameObject, 0.2f);
         }
     }
 }

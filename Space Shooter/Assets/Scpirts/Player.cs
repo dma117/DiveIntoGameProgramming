@@ -17,7 +17,12 @@ public class Player : MonoBehaviour
     private int _lifes = 3;
     [SerializeField] 
     private int _score;
+    [SerializeField]
+    private AudioClip _shotSound;
+    [SerializeField]
+    private AudioClip _explosionSound;
 
+    private AudioSource _audioSource;
     private GameObject _rightEngine;
     private GameObject _leftEngine;
     
@@ -39,6 +44,7 @@ public class Player : MonoBehaviour
         _ui = GameObject.Find("Canvas").GetComponent<UIManager>();
         _rightEngine = transform.Find("RightEngine").gameObject;
         _leftEngine = transform.Find("LeftEngine").gameObject;
+        _audioSource = GetComponent<AudioSource>();
 
         if (_spawnManager == null)
         {
@@ -78,6 +84,9 @@ public class Player : MonoBehaviour
 
     void Fire()
     {
+        _audioSource.clip = _shotSound;
+        _audioSource.Play();
+        
         if (_tripleShot)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
@@ -99,6 +108,9 @@ public class Player : MonoBehaviour
         }
         else
         {
+            _audioSource.clip = _explosionSound;
+            _audioSource.Play();
+            
             _lifes -= 1;
 
             if (_lifes == 2)

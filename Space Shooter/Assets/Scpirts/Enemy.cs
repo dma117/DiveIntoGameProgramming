@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] 
     private float _speed = 4.0f;
+    [SerializeField]
+    private AudioClip _explosionSound;
+    
+    private AudioSource _audioSource;
 
     private Animator _enemyAnim;
 
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     {
         _enemyAnim = GetComponent<Animator>();
         _player = GameObject.Find("Player").GetComponent<Player>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Laser")
         {
+            _audioSource.clip = _explosionSound;
+            _audioSource.Play();
             _enemyAnim.SetTrigger("OnEnemyDestroyed");
             Destroy(GetComponent<Collider2D>());
             Destroy(gameObject, 2.8f);
@@ -49,6 +53,8 @@ public class Enemy : MonoBehaviour
         }
         else if (other.tag == "Player")
         {
+            _audioSource.clip = _explosionSound;
+            _audioSource.Play();
             _enemyAnim.SetTrigger("OnEnemyDestroyed");
             Destroy(GetComponent<Collider2D>());
             
