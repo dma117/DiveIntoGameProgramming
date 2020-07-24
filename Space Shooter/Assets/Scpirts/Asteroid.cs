@@ -9,6 +9,8 @@ public class Asteroid : MonoBehaviour
     private float _speed;
     [SerializeField]
     private GameObject _explosionPrefab;
+    [SerializeField]
+    private GameObject _spawnManager;
 
     // Update is called once per frame
     void Update()
@@ -22,6 +24,7 @@ public class Asteroid : MonoBehaviour
         {
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            _spawnManager.GetComponent<SpawnManager>().StartSpawning();
             Destroy(gameObject);
         }
     }
