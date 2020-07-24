@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     private int _lifes = 3;
     [SerializeField] 
     private int _score;
+
+    private GameObject _rightEngine;
+    private GameObject _leftEngine;
     
     private SpawnManager _spawnManager;
     private UIManager _ui;
@@ -34,6 +37,8 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _ui = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _rightEngine = transform.Find("RightEngine").gameObject;
+        _leftEngine = transform.Find("LeftEngine").gameObject;
 
         if (_spawnManager == null)
         {
@@ -95,11 +100,26 @@ public class Player : MonoBehaviour
         else
         {
             _lifes -= 1;
+
+            if (_lifes == 2)
+            {
+                _rightEngine.SetActive(true);
+            }
+
+            if (_lifes == 1)
+            {
+                _leftEngine.SetActive(true);
+            }
+
             _ui.UpdateLives(_lifes);
 
             if (_lifes < 1)
             {
                 _spawnManager.OnPlayerDeath();
+                
+                _rightEngine.SetActive(false);
+                _leftEngine.SetActive(false);
+                
                 Destroy(gameObject);
                 _ui.GameOver();
             }
