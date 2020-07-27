@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef53f006fad3c6d44a1214f7cadb3772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerOne: 1
+  isPLayerTwo: 0
   _speed: 5
   _laserPrefab: {fileID: 6049181051228826958, guid: ab63ae0f56b7e3243896c8d409f02fe6,
     type: 3}

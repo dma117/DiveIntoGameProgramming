@@ -5,9 +5,15 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField]
     private GameObject _playerPrefab;
+
+    public bool singleGame;
+
     void Start()
     {
-        Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+        if (singleGame)
+        {
+            Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+        }
     }
     
     // Update is called once per frame

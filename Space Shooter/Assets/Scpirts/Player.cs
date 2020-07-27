@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public bool isPlayerOne;
+    public bool isPlayerTwo;
+    
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
@@ -26,6 +29,7 @@ public class Player : MonoBehaviour
     
     private SpawnManager _spawnManager;
     private UIManager _ui;
+    private SceneController _sceneController;
     
     private float _delay = 0.12f;
     private float _fireTime = 0.5f;
@@ -37,9 +41,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _ui = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _sceneController = GameObject.Find("SceneManager").GetComponent<SceneController>();
         _rightEngine = transform.Find("RightEngine").gameObject;
         _leftEngine = transform.Find("LeftEngine").gameObject;
         _audioSource = GetComponent<AudioSource>();
@@ -48,23 +52,35 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("The Spawn Manager is NULL.");
         }
+
+        if (_sceneController.singleGame)
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (isPlayerOne)
+        {
+            Move("Horizontal", "Vertical");
+        }
+        if (isPlayerTwo)
+        {
+            Move("Horizontal2", "Vertical2");
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= _fireTime)
+        if ((Input.GetKeyDown(KeyCode.Space) && isPlayerOne) || (Input.GetKeyDown(KeyCode.RightShift) && isPlayerTwo) && Time.time >= _fireTime)
         {
             Fire();
         }
     }
 
-    void Move()
+    void Move(string horizontalAxis, string verticalAxis)
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxis(horizontalAxis);
+        float verticalInput = Input.GetAxis(verticalAxis);
         
         transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * Time.deltaTime * _speed);
         
