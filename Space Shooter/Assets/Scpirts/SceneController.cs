@@ -21,12 +21,12 @@ public class SceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
     }
 
     public void UpdateScene()
     {
-       SceneManager.LoadScene(1); //current scene
+        SceneManager.LoadScene(singleGame ? 1 : 2);
     }
 }

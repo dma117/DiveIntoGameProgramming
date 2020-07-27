@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _enemyAnim = GetComponent<Animator>();
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _audioSource = GetComponent<AudioSource>();
         StartCoroutine(EnemyFireRoutine());
     }
@@ -65,12 +65,9 @@ public class Enemy : MonoBehaviour
             _enemyAnim.SetTrigger("OnEnemyDestroyed");
             
             Destroy(GetComponent<Collider2D>());
-            
-            if (_player != null)
-            {
-                _player.Damage();
-            }
-            
+
+            other.GetComponent<Player>().Damage();
+
             Destroy(gameObject, 2.8f);
         }
     }

@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     private bool _tripleShot;
     private bool _shieldPower;
 
+    private int _countDeaths;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -141,6 +143,8 @@ public class Player : MonoBehaviour
 
             if (_lifes < 1)
             {
+                _countDeaths++;
+                
                 _spawnManager.OnPlayerDeath();
                 
                 _rightEngine.SetActive(false);
