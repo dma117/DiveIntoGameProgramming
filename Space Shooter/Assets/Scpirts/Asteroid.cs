@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
@@ -32,6 +29,7 @@ public class Asteroid : MonoBehaviour
     {
         if (other.tag == "Laser")
         {
+            Destroy(GetComponent<Collider2D>());
             _audioSource.Play();
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
