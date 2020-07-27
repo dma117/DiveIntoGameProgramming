@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     private Text _restartText;
     [SerializeField]
     private GameObject _sceneManager;
+    [SerializeField]
+    private GameObject _pauseMenuPanel;
     
     void Start()
     {
@@ -30,6 +32,11 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && _restartText.gameObject.activeSelf)
         {
             _sceneManager.GetComponent<SceneController>().UpdateScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            _pauseMenuPanel.gameObject.SetActive(true);
         }
     }
 
