@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     private float _speed;
     [SerializeField]
     private float _gravity;
+    [SerializeField]
+    private float _jumpHeight;
+
+    private float _yVelocity;
     
     private CharacterController _characterController;
     
@@ -23,11 +27,20 @@ public class Player : MonoBehaviour
         var horizontalAxis = Input.GetAxis("Horizontal");
         var direction = new Vector3(horizontalAxis, 0, 0);
         var velocity = direction * _speed;
-
-        if (!_characterController.isGrounded)
+        
+        if (_characterController.isGrounded)
         {
-            velocity.y = _gravity;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _yVelocity = _jumpHeight;
+            }
         }
+        else
+        {
+            _yVelocity -= _gravity;
+        }
+
+        velocity.y = _yVelocity;
         
         _characterController.Move(velocity * Time.deltaTime);
     }

@@ -525,7 +525,7 @@ PrefabInstance:
     - target: {fileID: 923805082635970975, guid: 9e4d96b2c8d84f549aafea0c299b24ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2349231
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 923805082635970975, guid: 9e4d96b2c8d84f549aafea0c299b24ff,
         type: 3}
@@ -792,7 +792,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _gravity: -9.8
+  _gravity: 1
+  _jumpHeight: 30
 --- !u!1 &1609207964
 GameObject:
   m_ObjectHideFlags: 0
