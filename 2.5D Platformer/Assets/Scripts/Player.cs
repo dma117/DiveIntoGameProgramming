@@ -10,11 +10,12 @@ public class Player : MonoBehaviour
     private float _gravity;
     [SerializeField]
     private float _jumpHeight;
-
     private float _yVelocity;
+
+    private bool _isJumping;
     
     private CharacterController _characterController;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +34,24 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _yVelocity = _jumpHeight;
+                _isJumping = true;
+            }
+            else
+            {
+                _isJumping = false;
             }
         }
         else
         {
-            _yVelocity -= _gravity;
+            if (_isJumping && Input.GetKeyDown(KeyCode.Space))
+            {
+                _yVelocity = _jumpHeight;
+                _isJumping = false;
+            }
+            else
+            {
+                _yVelocity -= _gravity;
+            }
         }
 
         velocity.y = _yVelocity;
