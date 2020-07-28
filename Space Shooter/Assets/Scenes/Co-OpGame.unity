@@ -793,6 +793,7 @@ MonoBehaviour:
   _gameOverText: {fileID: 580254441}
   _restartText: {fileID: 647829522}
   _sceneManager: {fileID: 671222823}
+  _pauseMenuPanel: {fileID: 0}
 --- !u!114 &779993508
 MonoBehaviour:
   m_ObjectHideFlags: 0
