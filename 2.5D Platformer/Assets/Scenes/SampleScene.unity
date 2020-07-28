@@ -792,6 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
+  _gravity: -9.8
 --- !u!1 &1609207964
 GameObject:
   m_ObjectHideFlags: 0

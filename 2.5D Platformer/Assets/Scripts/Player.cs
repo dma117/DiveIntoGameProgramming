@@ -6,8 +6,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
+    [SerializeField]
+    private float _gravity;
     
     private CharacterController _characterController;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         var horizontalAxis = Input.GetAxis("Horizontal");
-        _characterController.Move(new Vector3(horizontalAxis, 0, 0) * Time.deltaTime * _speed);
+        var direction = new Vector3(horizontalAxis, 0, 0);
+        var velocity = direction * _speed;
+
+        if (!_characterController.isGrounded)
+        {
+            velocity.y = _gravity;
+        }
+        
+        _characterController.Move(velocity * Time.deltaTime);
     }
 }
