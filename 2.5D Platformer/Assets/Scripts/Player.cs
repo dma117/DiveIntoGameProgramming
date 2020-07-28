@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _jumpHeight;
     private float _yVelocity;
+
+    private int _countCoins;
+
+    public int CountCoins => _countCoins;
 
     private bool _isJumping;
     
@@ -57,5 +59,10 @@ public class Player : MonoBehaviour
         velocity.y = _yVelocity;
         
         _characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void UpdateCoins()
+    {
+        _countCoins++;
     }
 }
