@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -7,8 +8,12 @@ public class UIManager : MonoBehaviour
     private Text _coinsText;
     [SerializeField]
     private GameObject _player;
-    public void UpdateCoins()
+    [SerializeField]
+    private Text _lifesText;
+
+    private void Update()
     {
         _coinsText.text = "Coins: " + _player.GetComponent<Player>().CountCoins;
+        _lifesText.text = "Lifes:" + _player.GetComponent<Player>().Lives;
     }
 }

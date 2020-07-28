@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class Player : MonoBehaviour
     private float _jumpHeight;
     private float _yVelocity;
 
-    private int _countCoins;
+    private int _countCoins = 0;
+    private int _lives = 3;
 
     public int CountCoins => _countCoins;
+    public int Lives => _lives;
 
     private bool _isJumping;
     
@@ -26,6 +29,16 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Move();
+
+        if (transform.position.y <= -6.0f)
+        {
+            UpdateLifes();
+        }
+    }
+
+    void Move()
     {
         var horizontalAxis = Input.GetAxis("Horizontal");
         var direction = new Vector3(horizontalAxis, 0, 0);
@@ -59,6 +72,17 @@ public class Player : MonoBehaviour
         velocity.y = _yVelocity;
         
         _characterController.Move(velocity * Time.deltaTime);
+    }
+
+    void UpdateLifes()
+    {
+        _lives--;
+        transform.position = new Vector3(-0.27f, 5.04f, 0);
+        
+        if (_lives == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void UpdateCoins()

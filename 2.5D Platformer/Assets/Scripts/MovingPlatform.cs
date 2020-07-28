@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MovingPlatform : MonoBehaviour
@@ -11,7 +12,7 @@ public class MovingPlatform : MonoBehaviour
     private float _speed;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
@@ -23,6 +24,22 @@ public class MovingPlatform : MonoBehaviour
         if (transform.position == _startPos.position || transform.position == _endPos.position)
         {
             (_startPos, _endPos) = (_endPos, _startPos);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.gameObject.transform.parent = gameObject.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.transform.parent = null;
         }
     }
 }
