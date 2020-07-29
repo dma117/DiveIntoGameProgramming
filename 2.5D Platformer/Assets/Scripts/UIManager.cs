@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -14,6 +13,6 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         _coinsText.text = "Coins: " + _player.GetComponent<Player>().CountCoins;
-        _lifesText.text = "Lifes:" + _player.GetComponent<Player>().Lives;
+        _lifesText.text = "Lives:" + _player.GetComponent<Player>().Lives;
     }
 }
