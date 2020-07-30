@@ -1,19 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _gravity;
-    
+    [SerializeField] private GameObject _weapon;
+
     private CharacterController _characterController;
 
     private int _countCoins;
+
+    public int CountCoins { get => _countCoins; set => _countCoins = value; }
     
     // Start is called before the first frame update
     void Start()
     {
+        _weapon.SetActive(false);
         _characterController = GetComponent<CharacterController>();
     }
 
@@ -41,5 +43,11 @@ public class Player : MonoBehaviour
     public void UpdateCoins()
     {
         _countCoins++;
+    }
+
+    public void SetWeapon()
+    {
+        _weapon.SetActive(true);
+        _weapon.GetComponent<Weapon>().SetAmmo();
     }
 }

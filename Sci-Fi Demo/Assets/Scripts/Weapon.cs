@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.EventSystems;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Weapon : MonoBehaviour
 {
@@ -22,7 +19,6 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentAmmo = _maxAmmo;
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = _audioClip;
     }
@@ -81,6 +77,11 @@ public class Weapon : MonoBehaviour
         _isReloading = true; 
         yield return new WaitForSeconds(1.5f);
         _isReloading = false;
+        _currentAmmo = _maxAmmo;
+    }
+
+    public void SetAmmo()
+    {
         _currentAmmo = _maxAmmo;
     }
 }
