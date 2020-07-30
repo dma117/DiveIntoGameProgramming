@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _gravity;
     
     private CharacterController _characterController;
+
+    private int _countCoins;
     
     // Start is called before the first frame update
     void Start()
@@ -34,5 +36,10 @@ public class Player : MonoBehaviour
         
 
         _characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void UpdateCoins()
+    {
+        _countCoins++;
     }
 }
