@@ -62,6 +62,12 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo))
         {
             var hit = Instantiate(_hitMarker, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            
+            if (hitInfo.transform.tag == "Crate")
+            {
+                hitInfo.transform.GetComponent<Destructable>().Destruct();
+            }
+            
             Destroy(hit, 0.5f);
         }
     }
